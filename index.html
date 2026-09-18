@@ -3,184 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khadija Pickles - Homemade Chicken & Mutton Pickles</title>
+<title>Khadija Pickles - Bangalore</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#fff8f0}
-.header{background:#8b0000;color:white;padding:15px;text-align:center}
-.header h1{font-size:28px}
+.header{background:#8b0000;color:white;padding:15px;text-align:center;position:sticky;top:0}
 .product{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:20px}
 .card{border:2px solid #8b0000;border-radius:12px;width:300px;padding:15px;background:white;text-align:center}
-.card img{width:100%;height:200px;object-fit:cover;border-radius:8px;background:#eee}
-.card h3{margin:10px 0;color:#8b0000}
-.btn{background:#8b0000;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;margin:5px}
-.btn:hover{background:#a52a2a}
-.cart{position:fixed;bottom:0;left:0;right:0;background:white;border-top:3px solid #8b0000;padding:15px;max-height:60vh;overflow:auto}
-input{padding:10px;width:100%;margin:8px 0;border:1px solid #ccc;border-radius:6px}
-#qrBox{text-align:center;margin:15px 0}
+.btn{background:#8b0000;color:white;padding:12px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
+.delivery-box{max-width:500px;margin:20px auto;padding:20px;background:#e8ffe8;border-radius:12px;border:2px solid green;text-align:center}
+.cart{max-width:500px;margin:20px auto;background:white;border:2px solid #8b0000;padding:15px;border-radius:12px}
+input{padding:12px;width:100%;margin:8px 0;border:1px solid #ccc;border-radius:6px}
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>🌶️ KHADIJA PICKLES 🌶️</h1>
-<p>Homemade Chicken & Mutton Pickles - Udupi Special</p>
-<p>WhatsApp: 8374728771 | UPI: 9652277926-7@ybl</p>
+<h1>🌶️ KHADIJA PICKLES - BLR 🌶️</h1>
+<p>Virgonagar, Bangalore - 560049</p>
+</div>
+
+<div class="delivery-box">
+<h3>📍 Auto Detecting Your Location</h3>
+<p id="gpsStatus" style="font-weight:bold;color:blue;margin:10px 0">📡 Please allow Location permission...</p>
+<h2 id="distShow" style="color:#8b0000">--- KM</h2>
+<h2 id="chargeShow" style="color:green"></h2>
+<p style="font-size:11px;color:gray;margin-top:10px">Shop: Prajna School, Virgonagar<br>0-3KM=Rs30 | Extra Rs8/KM | Ex: 4KM = 30 + 1×8 = 38<br>>35KM No Delivery</p>
+<button class="btn" style="background:blue;width:100%;margin-top:10px" onclick="getLocation()">📍 Retry Location</button>
 </div>
 
 <div class="product">
-<div class="card">
-<img src="chicken.jpg" alt="Chicken Pickle">
-<h3>Chicken Pickle - 250g</h3>
-<p>Spicy & Juicy Homemade</p>
-<h2>Rs 350</h2>
-<button class="btn" onclick="addCart('Chicken Pickle 250g',350)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="mutton.jpg" alt="Mutton Pickle">
-<h3>Mutton Pickle - 250g</h3>
-<p>Premium Taste</p>
-<h2>Rs 450</h2>
-<button class="btn" onclick="addCart('Mutton Pickle 250g',450)">Add to Cart</button>
-</div>
-</div>
-
-<div style="max-width:500px;margin:20px auto;padding:20px;background:white;border-radius:12px;">
-<h3>Check Delivery Charge</h3>
-<input type="text" id="pincode" placeholder="Enter Pincode (e.g. 576101 for Udupi)">
-<button class="btn" onclick="checkPin()">Check Delivery Price</button>
-<p id="pinResult" style="margin-top:10px;font-weight:bold"></p>
-<p style="font-size:12px;color:gray;margin-top:10px">
-0-5 KM = Rs 30 | 5-10 KM = Rs 60 | 10-20 KM = Rs 120 | 20-30 KM = Rs 180 | Above 30 KM = No Delivery
-</p>
+<div class="card"><h3>Chicken Pickle 250g</h3><h2>Rs 350</h2><button class="btn" onclick="addCart('Chicken Pickle 250g',350)">Add to Cart</button></div>
+<div class="card"><h3>Mutton Pickle 250g</h3><h2>Rs 450</h2><button class="btn" onclick="addCart('Mutton Pickle 250g',450)">Add to Cart</button></div>
 </div>
 
 <div class="cart">
-<h3>🛒 Your Cart</h3>
+<h3>🛒 Cart</h3>
 <div id="cartItems">Cart is empty</div>
-<p id="deliveryCharge">Delivery: Rs 30</p>
-<h3 id="total">Total: Rs 0</h3>
-
+<p id="deliveryCharge" style="font-weight:bold;margin:10px 0">Delivery: Waiting for GPS...</p>
+<h2 id="total" style="color:#8b0000">Total: Rs 0</h2>
 <input type="text" id="custName" placeholder="Your Name">
-<input type="text" id="custPhone" placeholder="Your Phone Number">
+<input type="text" id="custPhone" placeholder="Phone">
 <input type="text" id="custAddr" placeholder="Full Address">
-
-<div id="qrBox">
-<p><b>Scan & Pay UPI:</b></p>
-<img id="qrImg" src="" width="200" height="200" style="border:1px solid #ccc">
-<p id="upiText" style="font-size:14px;margin-top:5px"></p>
+<div style="text-align:center;margin:15px 0">
+<img id="qrImg" src="" width="200" height="200" style="border:1px solid #ccc;border-radius:8px">
+<p id="upiText" style="font-size:11px"></p>
 </div>
-
-<button class="btn" style="width:100%;background:green;font-size:18px" onclick="placeOrder()">✅ I Paid - Send Order on WhatsApp</button>
+<button class="btn" style="width:100%;background:green;font-size:18px;padding:15px" onclick="placeOrder()">✅ Pay & Send WhatsApp</button>
 </div>
 
 <script>
-// === YOUR REAL DETAILS ===
 const MY_UPI = "9652277926-7@ybl";
-const MY_NAME = "Khadija Pickles";
-const MY_WA = "918374728771"; // WhatsApp number
+const MY_WA = "918374728771";
+// YOUR NEW SHOP LOCATION - PRAJNA SCHOOL VIRGONAGAR 560049
+const SHOP_LAT = 13.04957;
+const SHOP_LNG = 77.74622;
 
-// === DELIVERY LOGIC - YOU WILL NEVER LOSE MONEY NOW ===
-const pinKm = {
-"576101":2, // Udupi center
-"576102":4,
-"576103":6,
-"576104":8,
-"560049":1, "560067":2, "560048":6, "560036":10
-};
+let cart=[], km=0, del=0, totPay=0, customerLat=null, customerLng=null;
 
-let cart = [];
-let km = 0;
-let del = 30;
-let totPay = 0;
-
-// NEW FIXED FORMULA - NO MORE 126 BUG
-function calc(k){
- if(k<=5) return 30;
- if(k<=10) return 60;
- if(k<=15) return 90;
- if(k<=20) return 120;
- if(k<=30) return 180;
- return 999; // Too far
+function getDistance(lat1, lon1, lat2, lon2){
+  const R=6371;
+  const dLat=(lat2-lat1)*Math.PI/180;
+  const dLon=(lon2-lon1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
-function addCart(name, price){
- cart.push({name, price});
- render();
+// YOUR FORMULA: 3KM=30, 4KM=30+1*8=38
+function calcCharge(k){
+  if(k > 35) return 999;
+  if(k <= 3) return 30;
+  return Math.round(30 + (k-3)*8);
 }
 
+function getLocation(){
+  document.getElementById("gpsStatus").innerText="📡 Getting location... Allow permission";
+  if(!navigator.geolocation){ document.getElementById("gpsStatus").innerText="❌ GPS not supported"; return; }
+  navigator.geolocation.getCurrentPosition(pos=>{
+    customerLat=pos.coords.latitude; customerLng=pos.coords.longitude;
+    km = Math.round(getDistance(SHOP_LAT, SHOP_LNG, customerLat, customerLng)*10)/10;
+    del = calcCharge(km);
+    document.getElementById("gpsStatus").innerText="✅ Location Found!";
+    document.getElementById("gpsStatus").style.color="green";
+    document.getElementById("distShow").innerText=`📍 Distance: ${km} KM`;
+    if(del==999){
+      document.getElementById("chargeShow").innerText=`❌ ${km} KM >35KM - No Delivery`;
+      document.getElementById("chargeShow").style.color="red";
+      document.getElementById("deliveryCharge").innerText=`Delivery: NOT AVAILABLE (${km} KM)`;
+    } else {
+      let text = km<=3? `Delivery: Rs ${del} (within 3KM)` : `Delivery: Rs ${del} (30 + ${(km-3).toFixed(1)}×8)`;
+      document.getElementById("chargeShow").innerText=text;
+      document.getElementById("chargeShow").style.color="green";
+      document.getElementById("deliveryCharge").innerText=`Delivery (${km} KM): Rs ${del}`;
+    }
+    render();
+  }, err=>{
+    document.getElementById("gpsStatus").innerText="❌ Location Denied - Enable GPS & click Retry";
+    document.getElementById("gpsStatus").style.color="red";
+  }, {enableHighAccuracy:true});
+}
+
+window.onload = ()=>{ setTimeout(getLocation, 1200); };
+
+function addCart(n,p){ cart.push({name:n, price:p}); render(); }
 function render(){
- let html = "";
- let total = 0;
- cart.forEach((item,i)=>{
-   total += item.price;
-   html += `${item.name} - Rs ${item.price} <button onclick="removeItem(${i})">X</button><br>`;
- });
- if(cart.length==0) html = "Cart is empty";
-
- if(del==999){
-   document.getElementById("deliveryCharge").innerText = "Delivery: NOT AVAILABLE in your area - Please WhatsApp us";
-   del = 0;
-   totPay = total;
- } else {
-   document.getElementById("deliveryCharge").innerText = `Delivery (${km} KM): Rs ${del}`;
-   totPay = total + del;
- }
-
- document.getElementById("cartItems").innerHTML = html;
- document.getElementById("total").innerText = `Total: Rs ${totPay}`;
-
- // Generate working UPI QR
- let upiLink = `upi://pay?pa=${MY_UPI}&pn=${encodeURIComponent(MY_NAME)}&am=${totPay}&cu=INR`;
- let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiLink)}`;
- document.getElementById("qrImg").src = qrUrl;
- document.getElementById("upiText").innerText = `UPI ID: ${MY_UPI} | Amount: Rs ${totPay}`;
+  let html="", total=0;
+  cart.forEach((it,i)=>{ total+=it.price; html+=`<div style="display:flex;justify-content:space-between;margin:5px 0">${it.name} Rs ${it.price} <button onclick="cart.splice(${i},1);render()" style="background:red;color:white;border:none;padding:2px 8px;border-radius:4px">X</button></div>`; });
+  if(cart.length==0) html="Cart is empty";
+  totPay = (cart.length==0 || del==0 || del==999)? total : total+del;
+  if(cart.length>0 && del!=999) totPay = total+del;
+  else if(del==999) totPay=total;
+  if(cart.length==0) totPay=0;
+  document.getElementById("cartItems").innerHTML=html;
+  document.getElementById("total").innerText=`Total: Rs ${totPay}`;
+  let upi=`upi://pay?pa=${MY_UPI}&pn=Khadija&am=${totPay}&cu=INR`;
+  document.getElementById("qrImg").src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upi)}`;
+  document.getElementById("upiText").innerText=`UPI: ${MY_UPI} | Total Rs ${totPay} | ${km}KM`;
 }
-
-function removeItem(i){
- cart.splice(i,1);
- render();
-}
-
-function checkPin(){
- let pin = document.getElementById("pincode").value.trim();
- if(pinKm[pin]!==undefined){
-   km = pinKm[pin];
- } else {
-   // If pincode not in list, assume 8 KM (safe average)
-   km = 8;
-   document.getElementById("pinResult").innerText = `Pincode not in list, estimated distance ${km} KM`;
- }
- del = calc(km);
-
- if(del==999){
-   document.getElementById("pinResult").innerText = `❌ Sorry! ${km} KM is too far. We deliver only within 30 KM. Please WhatsApp us: ${MY_WA}`;
- } else {
-   document.getElementById("pinResult").innerText = `✅ Distance: ${km} KM | Delivery Charge: Rs ${del}`;
- }
- render();
-}
-
 function placeOrder(){
- let name = document.getElementById("custName").value;
- let phone = document.getElementById("custPhone").value;
- let addr = document.getElementById("custAddr").value;
- if(!name ||!phone){ alert("Please enter name and phone"); return; }
- if(cart.length==0){ alert("Cart empty"); return; }
- if(del==999){ alert("Too far for delivery - WhatsApp us"); return; }
-
- let orderText = `*NEW ORDER - Khadija Pickles*%0AName: ${name}%0APhone: ${phone}%0AAddress: ${addr}%0APincode distance: ${km} KM%0A%0AOrder:%0A`;
- cart.forEach(item=>{ orderText += `- ${item.name} Rs ${item.price}%0A`; });
- orderText += `%0ADelivery: Rs ${del}%0A*Total Paid: Rs ${totPay}*%0AUPI: ${MY_UPI}%0A%0APlease confirm order!`;
-
- window.open(`https://wa.me/${MY_WA}?text=${orderText}`, "_blank");
+  if(km==0){ alert("Allow location first!"); getLocation(); return; }
+  if(del==999){ alert(`${km} KM >35KM No Delivery`); return; }
+  let name=document.getElementById("custName").value, phone=document.getElementById("custPhone").value, addr=document.getElementById("custAddr").value;
+  if(!name||!phone){ alert("Enter name phone"); return; }
+  if(cart.length==0){ alert("Cart empty"); return; }
+  let t=`*ORDER BANGALORE*%0AName: ${name}%0APhone: ${phone}%0AAddr: ${addr}%0ALoc: https://maps.google.com/?q=${customerLat},${customerLng}%0ADist: ${km}KM%0ADelivery: Rs ${del}%0ATotal: Rs ${totPay}`;
+  window.open(`https://wa.me/${MY_WA}?text=${t}`,"_blank");
 }
-
-// Initial render
-render();
-checkPin();
 </script>
-
 </body>
 </html>
