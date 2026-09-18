@@ -1,99 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KHADIJA PICKLES - BLR</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KHADIJA PICKLES - Rapido Tracker</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#fdf6f0}
-.top-bar{background:#000;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
-.logo-title{font-weight:900;font-size:16px;letter-spacing:1px}
-.logo-sub{color:#ffcc00;font-size:10px;font-weight:bold}
-.cart-btn{background:white;color:black;border-radius:20px;padding:6px 15px;font-weight:bold;font-size:14px;border:none}
-.pay-strip{background:#e11d2a;color:white;text-align:center;padding:7px;font-size:12px;font-weight:bold;letter-spacing:0.5px}
-.card{margin:15px;border-radius:20px;overflow:hidden;height:280px;position:relative;background:#ddd;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
-.card img{width:100%;height:100%;object-fit:cover}
-.card-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.9));padding:20px 15px;color:white}
-.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:900;margin-bottom:8px}
-.best{background:#ffcc00;color:black}
-.prem{background:#e11d2a;color:white}
-.card h2{font-size:22px;font-weight:900}
-.card p{font-size:14px;opacity:0.9}
-.price-btns{padding:10px;background:white;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.pbtn{flex:1;min-width:90px;border:2px solid #000;background:white;padding:10px;border-radius:10px;font-weight:bold;cursor:pointer}
-.pbtn.active,.pbtn:hover{background:#000;color:white}
-.delivery-box{background:white;margin:15px;border-radius:20px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1);border:1px solid #eee}
-.pin-input{width:100%;padding:15px;border-radius:12px;border:1.5px solid #ddd;font-size:15px;outline:none}
-.check-btn{width:100%;background:#000;color:white;padding:15px;border-radius:12px;border:none;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
-.charge-info{background:#e8f5e9;border-radius:10px;padding:12px;margin-top:12px;font-weight:bold;font-size:14px;color:#2e7d32;text-align:center}
-.cart-box{background:white;margin:15px;border-radius:20px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-input.info{width:100%;padding:13px;margin:7px 0;border-radius:10px;border:1px solid #ccc}
-.payBtn{background:#0a7a0a;color:white;width:100%;padding:16px;border:none;border-radius:12px;font-size:17px;font-weight:900;margin-top:10px}
-#qrBox{text-align:center;margin:15px 0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#fff7f0}
+.header{background:#000;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:999}
+#map{height:360px;width:100%;z-index:1}
+.map-btn{position:absolute;bottom:20px;right:12px;z-index:400;background:#fff;border:none;padding:10px 14px;border-radius:25px;box-shadow:0 2px 10px rgba(0,0,0,.3);font-weight:900;cursor:pointer}
+.gps{margin:12px;background:#111;color:#25D366;padding:12px;border-radius:12px;text-align:center;font-weight:700;font-size:13px}
+.card{margin:12px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.card-img{height:200px;position:relative;background:#ddd}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.cname{position:absolute;bottom:12px;left:12px;color:#fff;font-weight:900;text-shadow:0 2px 10px #000}
+.btn-row{display:flex;gap:6px;padding:10px}
+.bbtn{flex:1;padding:10px;border:1.5px solid #000;border-radius:8px;font-weight:800;font-size:12px;background:#fff;cursor:pointer}
+.bbtn.pop{background:#000;color:#fff}
+.delivery{background:#fff;border-radius:18px;padding:14px;margin:12px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.result{padding:12px;margin-top:10px;border-radius:10px;font-weight:800;text-align:center}
+.cart-box{background:#fff;border-radius:20px;padding:16px;margin:12px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.inp{width:100%;padding:14px;border:1.5px solid #eee;background:#f7f7f7;border-radius:12px;margin-top:10px;outline:none}
+.pay{width:100%;padding:16px;border:none;border-radius:14px;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer}
+.confirm{width:100%;background:#000;color:#fff;padding:14px;border:none;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
 </style>
 </head>
 <body>
+<div class="header"><div style="font-weight:900">KHADIJA PICKLES 🥒<br><span style="font-size:9px;color:#ffcc00">RAPIDO LIVE TRACKER • VIRGONAGAR</span></div><div style="background:#fff;color:#000;border-radius:20px;padding:6px 14px;font-weight:900">🛒 <span id="cnt">0</span></div></div>
 
-<div class="top-bar">
-<div><div class="logo-title">KHADIJA PICKLES</div><div class="logo-sub">HALAL & HOME MADE • ONLINE PAY ONLY</div></div>
-<button class="cart-btn" onclick="document.getElementById('cartSec').scrollIntoView({behavior:'smooth'})">🛒 <span id="cartCount">0</span></button>
-</div>
-<div class="pay-strip">🔒 ONLINE PAYMENT ONLY • NO COD • GPAY / PHONEPE / PAYTM</div>
-
-<!-- CHICKEN -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600" onerror="this.src='https://via.placeholder.com/600x400/8B0000/fff?text=Chicken+Pickle'">
-<div class="card-overlay"><span class="badge best">BEST SELLER</span><h2>Chicken Pickle</h2><p>1/2kg Rs.700 | 1kg Rs.1350</p></div>
-</div>
-<div class="price-btns">
-<button class="pbtn" onclick="addCart('Chicken Pickle 250g',350)">250g ₹350</button>
-<button class="pbtn" onclick="addCart('Chicken Pickle 1/2kg',700)">1/2kg ₹700</button>
-<button class="pbtn" onclick="addCart('Chicken Pickle 1kg',1350)">1kg ₹1350</button>
+<div style="position:relative">
+<div id="map"></div>
+<button class="map-btn" onclick="locateMe()">📍 My Location</button>
 </div>
 
-<!-- MUTTON -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600" onerror="this.src='https://via.placeholder.com/600x400/000/fff?text=Mutton+Pickle'">
-<div class="card-overlay"><span class="badge prem">PREMIUM</span><h2>Mutton Pickle</h2><p>1/2kg Rs.1250 | 1kg Rs.2400</p></div>
-</div>
-<div class="price-btns">
-<button class="pbtn" onclick="addCart('Mutton Pickle 250g',650)">250g ₹650</button>
-<button class="pbtn" onclick="addCart('Mutton Pickle 1/2kg',1250)">1/2kg ₹1250</button>
-<button class="pbtn" onclick="addCart('Mutton Pickle 1kg',2400)">1kg ₹2400</button>
+<div id="gps" class="gps">📍 Loading Rapido tracker... Allow location</div>
+
+<!-- ALL PICKLES -->
+<div class="card"><div class="card-img"><img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800"><div class="cname">Chicken Pickle</div></div><div class="btn-row"><button class="bbtn" onclick="addCart('Chicken 250g',350)">250g ₹350</button><button class="bbtn pop" onclick="addCart('Chicken 500g',700)">500g ₹700</button><button class="bbtn" onclick="addCart('Chicken 1kg',1350)">1kg ₹1350</button></div></div>
+
+<div class="card"><div class="card-img"><img src="https://images.unsplash.com/photo-1546964124-0c9e389e67e4?w=800"><div class="cname">Mutton Pickle - PREMIUM</div></div><div class="btn-row"><button class="bbtn" onclick="addCart('Mutton 250g',650)">250g ₹650</button><button class="bbtn pop" onclick="addCart('Mutton 500g',1250)">500g ₹1250</button><button class="bbtn" onclick="addCart('Mutton 1kg',2400)">1kg ₹2400</button></div></div>
+
+<div class="delivery">
+<div style="font-weight:900;margin-bottom:6px">📍 Delivery Location (Drag pin like Rapido)</div>
+<input id="addr" style="width:100%;padding:14px;border-radius:12px;border:1.5px solid #ddd;background:#fafafa" placeholder="Address auto-fills when you move pin...">
+<div id="delResult" class="result" style="background:#e6f4ea;color:#0f5132">Move pin to your exact house</div>
+<button class="confirm" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">✅ Confirm Location & Order</button>
+<div style="text-align:center;font-size:11px;color:#666;margin-top:6px">Shop: Virgonagar 560049 • Max 35KM • 0-3km Rs30 + Rs8/km</div>
 </div>
 
-<!-- DELIVERY CHECK LIKE PHOTO -->
-<div class="delivery-box">
-<input id="pin" class="pin-input" placeholder="Enter Pincode (560036=7km)">
-<button class="check-btn" onclick="checkPin()">Check Delivery</button>
-<div id="delShow" class="charge-info">📍 Auto detecting location...<br>15km - Rs.126 (0-3km Rs30 + Rs8/km)</div>
-</div>
-
-<!-- CART -->
-<div id="cartSec" class="cart-box">
+<div id="cart" class="cart-box">
 <h3>🛒 Your Cart</h3>
-<div id="cartItems" style="margin:10px 0">Cart is empty</div>
-<div id="delInfo" style="font-weight:bold;margin:5px 0">Delivery (1.1 KM): Rs 30</div>
-<div id="total" style="font-size:20px;font-weight:900;color:#8B0000;display:none">Total: Rs 0</div>
-<input id="cName" class="info" placeholder="Your Name">
-<input id="cPhone" class="info" placeholder="Phone Number">
-<input id="cAddr" class="info" placeholder="Full Address with Landmark">
-<div id="qrBox" style="display:none"><img id="qrImg" width="200" height="200" style="border-radius:12px;border:1px solid #ddd"><p id="upiText" style="font-size:11px;margin-top:5px"></p></div>
-<button class="payBtn" onclick="payNow()">✅ Pay & Order on WhatsApp</button>
+<div id="items" style="margin:10px 0;color:#666">Cart empty</div>
+<div id="dinfo" style="font-weight:800">Delivery: Rs 30</div>
+<div id="gtotal" style="font-weight:900;font-size:20px;color:#8B0000;display:none">Total Rs 0</div>
+<input id="cName" class="inp" placeholder="Your Name *"><input id="cPhone" class="inp" placeholder="Phone *">
+<div id="qrBox" style="display:none;text-align:center;margin-top:12px;background:#f9f9f9;padding:12px;border-radius:12px"><img id="qr" width="190" style="border-radius:10px"><div id="qtxt" style="font-size:11px;font-weight:700"></div></div>
+<button id="payBtn" class="pay" onclick="placeOrder()" style="background:#1a8a34;color:#fff">✅ Pay & Order on WhatsApp</button>
 </div>
 
 <script>
-const SHOP_LAT=13.049573; const SHOP_LNG=77.711;
-let deliveryKM=1.1; let deliveryCharge=30; let cart=[];
-function calcDist(a,b,c,d){const R=6371;const dLat=(c-a)*Math.PI/180;const dLon=(d-b)*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
-function getCharge(km){if(km<=3) return 30; return 30+Math.ceil(km-3)*8;}
-function updateGPS(){if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{deliveryKM=calcDist(SHOP_LAT,SHOP_LNG,p.coords.latitude,p.coords.longitude);deliveryCharge=getCharge(deliveryKM);document.getElementById('delShow').innerHTML=`📍 You are ${deliveryKM.toFixed(1)}KM away<br>${deliveryKM.toFixed(1)}km - Rs.${deliveryCharge}`;render();});}}
-function checkPin(){let pin=document.getElementById('pin').value;let km=7;if(pin=='560049') km=1.1; else if(pin=='560036') km=7; else if(pin) km=15; else {alert('Enter pincode');return;} deliveryKM=km; deliveryCharge=getCharge(km); document.getElementById('delShow').innerHTML=`${km}km - Rs.${deliveryCharge}`; render();}
-function addCart(n,p){let f=cart.find(i=>i.name==n);if(f) f.qty++; else cart.push({name:n,price:p,qty:1});render();document.getElementById('cartSec').scrollIntoView({behavior:'smooth'});}
-function render(){let h='';let tot=0;if(cart.length==0) h='Cart is empty';else cart.forEach((it,i)=>{tot+=it.price*it.qty;h+=`${it.name} x ${it.qty} = Rs ${it.price*it.qty} <button onclick="cart.splice(${i},1);render()" style="color:red;border:none;background:none">X</button><br>`;});document.getElementById('cartItems').innerHTML=h;document.getElementById('cartCount').innerText=cart.reduce((a,b)=>a+b.qty,0);document.getElementById('delInfo').innerText=`Delivery (${deliveryKM.toFixed(1)} KM): Rs ${deliveryCharge}`;let pay=cart.length==0?0:tot+deliveryCharge;document.getElementById('total').innerText=`Total: Rs ${pay}`;document.getElementById('total').style.display=cart.length==0?'none':'block';document.getElementById('qrBox').style.display=cart.length==0?'none':'block';if(cart.length>0){let upi=`upi://pay?pa=9652277926-7@ybl&pn=Khadija%20Pickles&am=${pay}&cu=INR`;document.getElementById('qrImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upi)}`;document.getElementById('upiText').innerText=`UPI: 9652277926-7@ybl | Rs ${pay}`;}}
-function payNow(){if(cart.length==0){alert('Add item');return;}let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let ad=document.getElementById('cAddr').value;if(!n||!ph||!ad){alert('Fill details');return;}let msg=`Hi Khadija Pickles BLR%0AName:${n}%0APhone:${ph}%0AAddr:${ad}%0A${document.getElementById('cartItems').innerText}%0A${document.getElementById('delInfo').innerText}%0A${document.getElementById('total').innerText}`;window.open(`https://wa.me/919652277926?text=${msg}`,'_blank');}
-updateGPS();render();
+const SHOP_LAT=13.04957, SHOP_LNG=77.74622;
+let km=0.2, charge=30, cart=[], userLat=SHOP_LAT, userLng=SHOP_LNG, map, marker;
+
+function dist(a,b,c,d){const R=6371,d1=(c-a)*Math.PI/180,d2=(d-b)*Math.PI/180,e=Math.sin(d1/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(d2/2)**2;return R*2*Math.atan2(Math.sqrt(e),Math.sqrt(1-e));}
+function calc(k){return k>35?-1:k<=3?30:30+Math.ceil(k-3)*8;}
+
+map=L.map('map',{zoomControl:false}).setView([SHOP_LAT,SHOP_LNG],14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
+L.marker([SHOP_LAT,SHOP_LNG],{icon:L.divIcon({html:'<div style="background:#000;color:#ffcc00;padding:6px 8px;border-radius:20px;font-size:11px;font-weight:900">🏪 SHOP</div>',iconSize:[70,30]})}).addTo(map);
+marker=L.marker([SHOP_LAT,SHOP_LNG],{draggable:true}).addTo(map);
+marker.on('dragend', onPinMove);
+map.on('click', e=>{marker.setLatLng(e.latlng);onPinMove();});
+
+async function onPinMove(){
+ let p=marker.getLatLng(); userLat=p.lat; userLng=p.lng;
+ km=dist(SHOP_LAT,SHOP_LNG,userLat,userLng); if(km<0.4) km=0.2; charge=calc(km);
+ try{
+  let r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${userLat}&lon=${userLng}&format=json`);
+  let d=await r.json();
+  document.getElementById('addr').value=d.display_name||`${userLat.toFixed(5)}, ${userLng.toFixed(5)}`;
+ }catch{}
+ updateUI();
+}
+function updateUI(){
+ let b=document.getElementById('delResult'), g=document.getElementById('gps');
+ if(charge==-1){b.innerHTML=`❌ ${km.toFixed(1)}km - NOT DELIVERABLE (Max 35KM)`;b.style.background='#ffcccc';b.style.color='#a00';g.innerHTML=`❌ ${km.toFixed(1)}KM - Too far`; }
+ else {b.innerText=`✅ ${km.toFixed(1)}km - Rs.${charge} - Deliverable`;b.style.background='#e6f4ea';b.style.color='#0f5132';g.innerHTML=`✅ You are ${km.toFixed(1)}KM away • Pin is perfect like Rapido`;}
+ render();
+}
+function locateMe(){
+ document.getElementById('gps').innerHTML='📍 Locating like Rapido... High accuracy';
+ navigator.geolocation.getCurrentPosition(p=>{
+  userLat=p.coords.latitude; userLng=p.coords.longitude;
+  map.setView([userLat,userLng],17); marker.setLatLng([userLat,userLng]); onPinMove();
+ },()=>alert('Allow Location permission'),{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+}
+function addCart(n,p){let f=cart.find(x=>x.name==n);if(f) f.q++; else cart.push({name:n,price:p,q:1});render();}
+function render(){
+ let h='',t=0,c=0; if(!cart.length) h='Cart empty'; else cart.forEach((it,i)=>{t+=it.price*it.q;c+=it.q;h+=`${it.name} x${it.q}=₹${it.price*it.q} <span onclick="cart.splice(${i},1);render()" style="color:red;cursor:pointer"> ✕</span><br>`;});
+ document.getElementById('items').innerHTML=h; document.getElementById('cnt').innerText=c;
+ let btn=document.getElementById('payBtn');
+ if(charge==-1){document.getElementById('dinfo').innerHTML=`<span style="color:red">❌ Beyond 35KM (${km.toFixed(1)}KM)</span>`;document.getElementById('gtotal').style.display='none';document.getElementById('qrBox').style.display='none';btn.disabled=true;btn.innerText='❌ Not Deliverable Beyond 35KM';btn.style.background='#ccc';return;}
+ btn.disabled=false;btn.innerText='✅ Pay & Order on WhatsApp';btn.style.background='#1a8a34';
+ document.getElementById('dinfo').innerText=`Delivery (${km.toFixed(1)}KM): Rs ${charge}`;
+ let pay=t+charge, el=document.getElementById('gtotal'); el.innerText=`Total Rs ${pay}`; el.style.display=cart.length?'block':'none';
+ document.getElementById('qrBox').style.display=cart.length?'block':'none';
+ if(cart.length){let upi=`upi://pay?pa=9652277926-7@ybl&pn=Khadija&am=${pay}&cu=INR`; document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upi)}`; document.getElementById('qtxt').innerText=`Pay ₹${pay} | UPI: 9652277926-7@ybl`;}
+}
+function placeOrder(){
+ if(charge==-1) return alert('Beyond 35KM - No delivery');
+ if(!cart.length) return alert('Add pickle');
+ let n=document.getElementById('cName').value, ph=document.getElementById('cPhone').value, ad=document.getElementById('addr').value;
+ if(!n||!ph) return alert('Name & Phone required');
+ let msg=`*KHADIJA PICKLES*%0AName:${n}%0APhone:${ph}%0AAddr:${ad}%0AKM:${km.toFixed(1)}%0ALat:${userLat}%0ALng:${userLng}%0A%0A${document.getElementById('items').innerText}%0A${document.getElementById('dinfo').innerText}%0A${document.getElementById('gtotal').innerText}`;
+ window.open(`https://wa.me/919652277926?text=${msg}`,'_blank');
+}
+locateMe(); render();
 </script>
 </body>
 </html>
