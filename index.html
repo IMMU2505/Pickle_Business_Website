@@ -3,60 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khadija Pickles - Bangalore</title>
+<title>KHADIJA PICKLES - BLR</title>
 <style>
-body{font-family:Arial;margin:0;background:#fff8f0}
-.header{background:#8B0000;color:white;text-align:center;padding:15px;font-size:22px;font-weight:bold;position:sticky;top:0;z-index:10}
-.sub{font-size:13px;font-weight:normal}
-.gps-box{background:#e8f5e9;border:2px solid #4CAF50;padding:10px;margin:10px;border-radius:10px;text-align:center;font-weight:bold}
-.product{border:2px solid #8B0000;margin:15px;border-radius:12px;padding:15px;text-align:center;background:white}
-.btn{background:#8B0000;color:white;border:none;padding:10px 20px;border-radius:8px;font-weight:bold;cursor:pointer;margin:5px}
-.cart-box{border:2px solid #8B0000;margin:15px;border-radius:12px;padding:15px;background:white}
-input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
-.payBtn{background:green;color:white;width:100%;padding:15px;border:none;border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#fdf6f0}
+.top-bar{background:#000;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
+.logo-title{font-weight:900;font-size:16px;letter-spacing:1px}
+.logo-sub{color:#ffcc00;font-size:10px;font-weight:bold}
+.cart-btn{background:white;color:black;border-radius:20px;padding:6px 15px;font-weight:bold;font-size:14px;border:none}
+.pay-strip{background:#e11d2a;color:white;text-align:center;padding:7px;font-size:12px;font-weight:bold;letter-spacing:0.5px}
+.card{margin:15px;border-radius:20px;overflow:hidden;height:280px;position:relative;background:#ddd;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.card img{width:100%;height:100%;object-fit:cover}
+.card-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.9));padding:20px 15px;color:white}
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:900;margin-bottom:8px}
+.best{background:#ffcc00;color:black}
+.prem{background:#e11d2a;color:white}
+.card h2{font-size:22px;font-weight:900}
+.card p{font-size:14px;opacity:0.9}
+.price-btns{padding:10px;background:white;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pbtn{flex:1;min-width:90px;border:2px solid #000;background:white;padding:10px;border-radius:10px;font-weight:bold;cursor:pointer}
+.pbtn.active,.pbtn:hover{background:#000;color:white}
+.delivery-box{background:white;margin:15px;border-radius:20px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1);border:1px solid #eee}
+.pin-input{width:100%;padding:15px;border-radius:12px;border:1.5px solid #ddd;font-size:15px;outline:none}
+.check-btn{width:100%;background:#000;color:white;padding:15px;border-radius:12px;border:none;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
+.charge-info{background:#e8f5e9;border-radius:10px;padding:12px;margin-top:12px;font-weight:bold;font-size:14px;color:#2e7d32;text-align:center}
+.cart-box{background:white;margin:15px;border-radius:20px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+input.info{width:100%;padding:13px;margin:7px 0;border-radius:10px;border:1px solid #ccc}
+.payBtn{background:#0a7a0a;color:white;width:100%;padding:16px;border:none;border-radius:12px;font-size:17px;font-weight:900;margin-top:10px}
+#qrBox{text-align:center;margin:15px 0}
 </style>
 </head>
 <body>
 
-<div class="header">🌶️ KHADIJA PICKLES - BLR 🌶️<br><span class="sub">Virgonagar, Bangalore - 560049</span></div>
-<div id="gps" class="gps-box">📍 Auto Detecting...</div>
+<div class="top-bar">
+<div><div class="logo-title">KHADIJA PICKLES</div><div class="logo-sub">HALAL & HOME MADE • ONLINE PAY ONLY</div></div>
+<button class="cart-btn" onclick="document.getElementById('cartSec').scrollIntoView({behavior:'smooth'})">🛒 <span id="cartCount">0</span></button>
+</div>
+<div class="pay-strip">🔒 ONLINE PAYMENT ONLY • NO COD • GPAY / PHONEPE / PAYTM</div>
 
-<div class="product">
-<h3>🍗 Chicken Pickle 250g<br>Rs 350</h3>
-<button class="btn" onclick="addCart('Chicken Pickle 250g',350)">Add 250g - 350</button>
+<!-- CHICKEN -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600" onerror="this.src='https://via.placeholder.com/600x400/8B0000/fff?text=Chicken+Pickle'">
+<div class="card-overlay"><span class="badge best">BEST SELLER</span><h2>Chicken Pickle</h2><p>1/2kg Rs.700 | 1kg Rs.1350</p></div>
+</div>
+<div class="price-btns">
+<button class="pbtn" onclick="addCart('Chicken Pickle 250g',350)">250g ₹350</button>
+<button class="pbtn" onclick="addCart('Chicken Pickle 1/2kg',700)">1/2kg ₹700</button>
+<button class="pbtn" onclick="addCart('Chicken Pickle 1kg',1350)">1kg ₹1350</button>
 </div>
 
-<div class="product" style="border-color:green">
-<h3>🐐 MUTTON PICKLE</h3>
-<button class="btn" onclick="addCart('Mutton Pickle 250g',650)">250g - Rs 650</button><br>
-<button class="btn" style="background:green" onclick="addCart('Mutton Pickle 500g',1250)">500g - Rs 1250</button><br>
-<button class="btn" style="background:black" onclick="addCart('Mutton Pickle 1KG',2400)">1KG - Rs 2400</button>
+<!-- MUTTON -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600" onerror="this.src='https://via.placeholder.com/600x400/000/fff?text=Mutton+Pickle'">
+<div class="card-overlay"><span class="badge prem">PREMIUM</span><h2>Mutton Pickle</h2><p>1/2kg Rs.1250 | 1kg Rs.2400</p></div>
+</div>
+<div class="price-btns">
+<button class="pbtn" onclick="addCart('Mutton Pickle 250g',650)">250g ₹650</button>
+<button class="pbtn" onclick="addCart('Mutton Pickle 1/2kg',1250)">1/2kg ₹1250</button>
+<button class="pbtn" onclick="addCart('Mutton Pickle 1kg',2400)">1kg ₹2400</button>
 </div>
 
-<div class="cart-box">
-<h3>🛒 Cart</h3>
-<div id="cartItems">Cart is empty</div>
-<div id="delInfo" style="margin:10px 0;font-weight:bold">Delivery: Calculating...</div>
-<div id="total" style="font-size:20px;font-weight:bold;color:#8B0000;display:none">Total: Rs 0</div>
-<input id="cName" placeholder="Your Name">
-<input id="cPhone" placeholder="Phone">
-<input id="cAddr" placeholder="Full Address">
-<div id="qrBox" style="text-align:center;margin:15px 0;display:none">
-<img id="qrImg" src="" width="200" height="200" style="border:1px solid #ccc;border-radius:10px">
-<p id="upiText" style="font-size:11px;word-break:break-all"></p>
+<!-- DELIVERY CHECK LIKE PHOTO -->
+<div class="delivery-box">
+<input id="pin" class="pin-input" placeholder="Enter Pincode (560036=7km)">
+<button class="check-btn" onclick="checkPin()">Check Delivery</button>
+<div id="delShow" class="charge-info">📍 Auto detecting location...<br>15km - Rs.126 (0-3km Rs30 + Rs8/km)</div>
 </div>
-<button class="payBtn" onclick="payNow()">✅ Pay & Send WhatsApp</button>
+
+<!-- CART -->
+<div id="cartSec" class="cart-box">
+<h3>🛒 Your Cart</h3>
+<div id="cartItems" style="margin:10px 0">Cart is empty</div>
+<div id="delInfo" style="font-weight:bold;margin:5px 0">Delivery (1.1 KM): Rs 30</div>
+<div id="total" style="font-size:20px;font-weight:900;color:#8B0000;display:none">Total: Rs 0</div>
+<input id="cName" class="info" placeholder="Your Name">
+<input id="cPhone" class="info" placeholder="Phone Number">
+<input id="cAddr" class="info" placeholder="Full Address with Landmark">
+<div id="qrBox" style="display:none"><img id="qrImg" width="200" height="200" style="border-radius:12px;border:1px solid #ddd"><p id="upiText" style="font-size:11px;margin-top:5px"></p></div>
+<button class="payBtn" onclick="payNow()">✅ Pay & Order on WhatsApp</button>
 </div>
 
 <script>
 const SHOP_LAT=13.049573; const SHOP_LNG=77.711;
 let deliveryKM=1.1; let deliveryCharge=30; let cart=[];
-function calcDistance(lat1,lon1,lat2,lon2){const R=6371;const dLat=(lat2-lat1)*Math.PI/180;const dLon=(lon2-lon1)*Math.PI/180;const a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
-function getDeliveryCharge(km){if(km<=3) return 30; return 30+Math.ceil(km-3)*8;}
-function updateGPS(){if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{deliveryKM=calcDistance(SHOP_LAT,SHOP_LNG,pos.coords.latitude,pos.coords.longitude);deliveryCharge=getDeliveryCharge(deliveryKM);document.getElementById("gps").innerHTML=`📍 You are ${deliveryKM.toFixed(1)} KM away`;render();},err=>{document.getElementById("gps").innerHTML=`📍 Delivery: Virgonagar 560049 (GPS off)`;render();});}}
-function addCart(name,price){let f=cart.find(i=>i.name==name);if(f) f.qty++; else cart.push({name,price,qty:1});render();}
-function render(){let html="";let total=0;if(cart.length==0){html="Cart is empty";}else{cart.forEach((item,idx)=>{total+=item.price*item.qty;html+=`${item.name} x ${item.qty} = Rs ${item.price*item.qty} <button onclick="cart.splice(${idx},1);render()">X</button><br>`;});}document.getElementById("cartItems").innerHTML=html;document.getElementById("delInfo").innerHTML=`Delivery (${deliveryKM.toFixed(1)} KM): Rs ${deliveryCharge}`;let totPay=cart.length==0?0:total+deliveryCharge;document.getElementById("total").innerHTML=`Total: Rs ${totPay}`;document.getElementById("total").style.display=cart.length==0?"none":"block";document.getElementById("qrBox").style.display=cart.length==0?"none":"block";if(cart.length>0){let upi=`upi://pay?pa=9652277926-7@ybl&pn=Khadija%20Pickles&am=${totPay}&cu=INR`;document.getElementById("qrImg").src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upi)}`;document.getElementById("upiText").innerText=`UPI: 9652277926-7@ybl | Rs ${totPay} | ${deliveryKM.toFixed(1)}KM`;}}
-function payNow(){if(cart.length==0){alert("Add pickle first!");return;}let name=document.getElementById("cName").value;let phone=document.getElementById("cPhone").value;let addr=document.getElementById("cAddr").value;if(!name||!phone||!addr){alert("Fill Name Phone Address");return;}let msg=`Hi Khadija Pickles BLR%0AName:${name}%0APhone:${phone}%0AAddress:${addr}%0A${document.getElementById("cartItems").innerText}%0A${document.getElementById("delInfo").innerText}%0A${document.getElementById("total").innerText}`;window.open(`https://wa.me/919652277926?text=${msg}`,"_blank");}
+function calcDist(a,b,c,d){const R=6371;const dLat=(c-a)*Math.PI/180;const dLon=(d-b)*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function getCharge(km){if(km<=3) return 30; return 30+Math.ceil(km-3)*8;}
+function updateGPS(){if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{deliveryKM=calcDist(SHOP_LAT,SHOP_LNG,p.coords.latitude,p.coords.longitude);deliveryCharge=getCharge(deliveryKM);document.getElementById('delShow').innerHTML=`📍 You are ${deliveryKM.toFixed(1)}KM away<br>${deliveryKM.toFixed(1)}km - Rs.${deliveryCharge}`;render();});}}
+function checkPin(){let pin=document.getElementById('pin').value;let km=7;if(pin=='560049') km=1.1; else if(pin=='560036') km=7; else if(pin) km=15; else {alert('Enter pincode');return;} deliveryKM=km; deliveryCharge=getCharge(km); document.getElementById('delShow').innerHTML=`${km}km - Rs.${deliveryCharge}`; render();}
+function addCart(n,p){let f=cart.find(i=>i.name==n);if(f) f.qty++; else cart.push({name:n,price:p,qty:1});render();document.getElementById('cartSec').scrollIntoView({behavior:'smooth'});}
+function render(){let h='';let tot=0;if(cart.length==0) h='Cart is empty';else cart.forEach((it,i)=>{tot+=it.price*it.qty;h+=`${it.name} x ${it.qty} = Rs ${it.price*it.qty} <button onclick="cart.splice(${i},1);render()" style="color:red;border:none;background:none">X</button><br>`;});document.getElementById('cartItems').innerHTML=h;document.getElementById('cartCount').innerText=cart.reduce((a,b)=>a+b.qty,0);document.getElementById('delInfo').innerText=`Delivery (${deliveryKM.toFixed(1)} KM): Rs ${deliveryCharge}`;let pay=cart.length==0?0:tot+deliveryCharge;document.getElementById('total').innerText=`Total: Rs ${pay}`;document.getElementById('total').style.display=cart.length==0?'none':'block';document.getElementById('qrBox').style.display=cart.length==0?'none':'block';if(cart.length>0){let upi=`upi://pay?pa=9652277926-7@ybl&pn=Khadija%20Pickles&am=${pay}&cu=INR`;document.getElementById('qrImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upi)}`;document.getElementById('upiText').innerText=`UPI: 9652277926-7@ybl | Rs ${pay}`;}}
+function payNow(){if(cart.length==0){alert('Add item');return;}let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let ad=document.getElementById('cAddr').value;if(!n||!ph||!ad){alert('Fill details');return;}let msg=`Hi Khadija Pickles BLR%0AName:${n}%0APhone:${ph}%0AAddr:${ad}%0A${document.getElementById('cartItems').innerText}%0A${document.getElementById('delInfo').innerText}%0A${document.getElementById('total').innerText}`;window.open(`https://wa.me/919652277926?text=${msg}`,'_blank');}
 updateGPS();render();
 </script>
 </body>
