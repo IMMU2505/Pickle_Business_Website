@@ -2,113 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khadija Pickles - Hoskote Special</title>
+<title>Khadija Pickles - 6 Items</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{background:#f1f3f6;font-family:Inter,Arial}</style>
+<style>body{background:#f1f3f6}</style>
 </head>
 <body>
-<!-- Header exactly like your screenshot -->
-<header class="bg-[#2874f0] p-3 sticky top-0 z-50">
-<div class="max-w-[1200px] mx-auto flex items-center justify-between">
-<div class="text-white"><h1 class="font-extrabold italic text-[22px] leading-none">KHADIJA PICKLES</h1><p class="text-[12px] mt-1">Hoskote Special - Since 2020</p></div>
-<div class="flex gap-4 items-center">
-<div class="bg-white rounded flex items-center px-3"><input id="search" class="w-[260px] py-2 outline-none text-sm" placeholder="Search"><span>🔍</span></div>
-<span class="text-white font-bold">Login</span>
-<span class="text-white font-bold bg-white/20 px-3 py-1 rounded" onclick="openCart()">🛒 Cart <span id="cartC" class="bg-red-600 px-1.5 rounded-full text-xs">0</span></span>
+<header class="bg-[#2874f0] p-2 sticky top-0 z-50">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex justify-between items-center">
+<div class="text-white"><h1 class="font-extrabold italic text-[18px]">KHADIJA PICKLES</h1><p class="text-[10px]">Hoskote Special - Since 2020</p></div>
+<div class="flex gap-3 items-center">
+<span class="text-white text-sm font-bold">Login</span>
+<button onclick="openCart()" class="bg-white text-[#2874f0] px-3 py-1.5 rounded font-bold text-sm">🛒 Cart <span id="cartC" class="bg-red-600 text-white px-2 rounded-full">0</span></button>
 </div>
+</div>
+<div class="mt-2 bg-white rounded flex px-3 py-1.5"><input class="w-full outline-none text-sm" placeholder="Search"><span>🔍</span></div>
 </div>
 </header>
 
-<div class="max-w-[1200px] mx-auto bg-white mt-3 p-4">
-<div class="flex justify-between border-b pb-3">
-<h2 class="font-bold text-[16px]">Hoskote Special Pickles (6 items) - 100% Halal</h2>
-<span class="text-sm">Sort by Price</span>
+<div class="max-w-[1200px] mx-auto bg-white mt-2 p-3">
+<div class="flex justify-between border-b pb-2"><h2 class="font-bold text-[13px]">Hoskote Special (6 items) - Halal - Qty x Weight</h2><span class="text-[11px]">Sort by Price</span></div>
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3" id="grid"></div>
 </div>
 
-<!-- 4 GRID LIKE YOUR SCREENSHOT -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-
-<!-- Chicken 250g -->
-<div class="border p-3 bg-white">
-<img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Chicken Pickle 250g Hoskote Special</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.8 (512)</p>
-<p class="font-bold mt-1">₹350 <span class="line-through text-gray-500 text-xs">₹450</span> <span class="text-green-600 text-xs">22% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-c250" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('c250')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-c250" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('c250')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
+<!-- CART WITH WEIGHT CALC -->
+<div id="cart" class="fixed top-0 right-0 w-[400px] max-w-[92%] h-full bg-[#f1f3f6] z-[100] translate-x-full transition flex flex-col">
+<div class="bg-white p-3 flex justify-between font-bold"><span>Cart <span id="cartCount">0</span> items | <span id="totalW">0g</span></span><span onclick="closeCart()">✕</span></div>
+<div id="cartList" class="flex-1 overflow-y-auto p-2 space-y-2"></div>
+<div class="bg-white p-3 border-t text-sm">
+<div class="flex justify-between"><span>Pincode</span><span><input id="finalPin" class="border p-1 w-[90px]" value="524121" maxlength="6" oninput="calc()"> <span id="pinLabel" class="text-[11px]"></span></span></div>
+<div class="flex justify-between mt-1"><span>Product Total</span><span id="sub">Rs 0</span></div>
+<div class="flex justify-between"><span>Shipping (<span id="weightLabel">0g</span>)</span><span id="ship">Rs 0</span></div>
+<div class="flex justify-between font-bold text-[16px] border-t mt-2 pt-2"><span>Grand Total</span><span id="grand">Rs 0</span></div>
+<img id="qr" class="w-[140px] mx-auto mt-2 hidden">
+<input id="name" class="border w-full p-2 mt-2 text-sm" placeholder="Full Name">
+<input id="phone" class="border w-full p-2 mt-1 text-sm" placeholder="WhatsApp">
+<input id="utr" class="border w-full p-2 mt-1 text-sm" placeholder="UTR 12 digit">
+<button onclick="payUPI()" class="w-full bg-[#2874f0] text-white py-2.5 rounded mt-2 font-bold">PAY UPI 9652277926-7@ybl</button>
+<button onclick="order()" class="w-full bg-[#fb641b] text-white py-2 rounded mt-2">ORDER ON WHATSAPP</button>
+<p class="text-[10px] text-gray-500 mt-1">Example: 10 x 250g = 5000g gross, shipping calc as per India Post slab to 524121</p>
 </div>
-
-<!-- Chicken 500g -->
-<div class="border p-3 bg-white">
-<img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Chicken Pickle 500g Hoskote Special</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.8 (892)</p>
-<p class="font-bold mt-1">₹700 <span class="line-through text-gray-500 text-xs">₹900</span> <span class="text-green-600 text-xs">22% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-c500" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('c500')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-c500" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('c500')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
-</div>
-
-<!-- Chicken 1kg Bestseller -->
-<div class="border p-3 bg-white relative">
-<span class="bg-red-500 text-white text-[10px] px-1 absolute top-1 left-1">Bestseller</span>
-<img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Chicken Pickle 1kg - Best Seller</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.9 (1.2k)</p>
-<p class="font-bold mt-1">₹1400 <span class="line-through text-gray-500 text-xs">₹1800</span> <span class="text-green-600 text-xs">22% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-c1000" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('c1000')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-c1000" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('c1000')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
-</div>
-
-<!-- Mutton 250g -->
-<div class="border p-3 bg-white">
-<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Mutton Pickle 250g Boneless</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.7 (321)</p>
-<p class="font-bold mt-1">₹700 <span class="line-through text-gray-500 text-xs">₹900</span> <span class="text-green-600 text-xs">20% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-m250" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('m250')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-m250" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('m250')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
-</div>
-
-<!-- Mutton 500g -->
-<div class="border p-3 bg-white">
-<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Mutton Pickle 500g Boneless</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.7 (534)</p>
-<p class="font-bold mt-1">₹1400 <span class="line-through text-gray-500 text-xs">₹1700</span> <span class="text-green-600 text-xs">20% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-m500" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('m500')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-m500" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('m500')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
-</div>
-
-<!-- Mutton 1kg -->
-<div class="border p-3 bg-white">
-<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400" class="w-full h-[180px] object-cover">
-<p class="text-[14px] mt-2 font-medium">Mutton Pickle 1kg Premium</p>
-<p class="text-xs text-gray-500 mt-1">★★★★★ 4.8 (421)</p>
-<p class="font-bold mt-1">₹2400 <span class="line-through text-gray-500 text-xs">₹3000</span> <span class="text-green-600 text-xs">20% off</span></p>
-<div class="flex gap-1 mt-2"><input id="pin-m1000" class="border text-xs p-1 w-[110px]" placeholder="Check pincode"><button onclick="checkPin('m1000')" class="text-[#2874f0] text-xs font-bold">Check</button></div><p id="ship-m1000" class="text-[11px] text-green-600"></p>
-<button onclick="addToCart('m1000')" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2 text-sm font-bold">ADD TO CART</button>
-</div>
-
-</div>
-</div>
-
-<!-- CART SAME AS BEFORE -->
-<div id="cart" class="fixed top-0 right-0 w-[420px] max-w-[95%] h-full bg-[#f1f3f6] z-[100] translate-x-full transition shadow-2xl flex flex-col">
-<div class="bg-white p-4 flex justify-between font-bold">Cart <span onclick="closeCart()" class="cursor-pointer">✕</span></div>
-<div id="cartList" class="flex-1 overflow-y-auto p-3"></div>
-<div class="bg-white p-4 border-t"><div class="flex justify-between text-sm"><span>Subtotal</span><span id="sub">0</span></div><div class="flex justify-between text-sm"><span>Shipping to <span id="pinLabel">-</span></span><span id="ship">0</span></div><div class="flex justify-between font-bold text-lg border-t mt-2 pt-2"><span>Total</span><span id="grand">0</span></div><img id="qr" class="w-[160px] mx-auto mt-2 hidden"><input id="name" class="border w-full p-2 mt-2 text-sm" placeholder="Full Name"><input id="phone" class="border w-full p-2 mt-1 text-sm" placeholder="WhatsApp"><input id="utr" class="border w-full p-2 mt-1 text-sm" placeholder="UTR"><button onclick="payUPI()" class="w-full bg-[#2874f0] text-white py-3 rounded mt-2 font-bold">PAY UPI 9652277926-7@ybl</button><button onclick="order()" class="w-full bg-[#fb641b] text-white py-2 rounded mt-2 text-sm">VERIFY & WHATSAPP 7406277926</button></div>
 </div>
 
 <script>
-const PRODUCTS={c250:{name:'Chicken Pickle 250g',price:350,weight:500},c500:{name:'Chicken Pickle 500g',price:700,weight:900},c1000:{name:'Chicken Pickle 1kg',price:1400,weight:1700},m250:{name:'Mutton Pickle 250g',price:700,weight:600},m500:{name:'Mutton Pickle 500g',price:1400,weight:1000},m1000:{name:'Mutton Pickle 1kg',price:2400,weight:1800}};
-let cart=[],ship=0; const UPI='9652277926-7@ybl';
-function getShip(pin,w){if(!pin||pin.length!=6)return 0; let s=w<=1000?135:214; if(['524126','524121'].includes(pin)) return s; let base=w<=1000?106:177; return Math.round(base*1.18+10);}
-function checkPin(id){let pin=document.getElementById('pin-'+id).value; let s=getShip(pin,PRODUCTS[id].weight); document.getElementById('ship-'+id).innerText=s?`Shipping to ${pin} = ₹${s} - Delivery Tomorrow`:'Invalid pin'; document.getElementById('pinLabel').innerText=pin;}
-function addToCart(id){cart=[{...PRODUCTS[id],qty:1}]; document.getElementById('cartC').innerText='1'; document.getElementById('cartList').innerHTML=`<div class="bg-white p-3 text-sm"><b>${PRODUCTS[id].name}</b><br>Rs ${PRODUCTS[id].price}</div>`; openCart(); calc();}
-function openCart(){document.getElementById('cart').style.transform='translateX(0)';}function closeCart(){document.getElementById('cart').style.transform='translateX(100%)';}
-function calc(){let pin=document.querySelector('[id^=pin-]').value||'524121'; let w=cart.reduce((a,b)=>a+b.weight*b.qty,0); ship=getShip(pin,w); let sub=cart.reduce((a,b)=>a+b.price*b.qty,0); document.getElementById('sub').innerText=`Rs ${sub}`; document.getElementById('ship').innerText=ship?`Rs ${ship}`:'Enter pin'; document.getElementById('grand').innerText=`Rs ${sub+ship}`; let link=`upi://pay?pa=${UPI}&pn=Khadija&am=${sub+ship}&cu=INR`; document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(link)}`; document.getElementById('qr').classList.remove('hidden');}
-function payUPI(){let total=cart.reduce((a,b)=>a+b.price*b.qty,0)+ship; window.location.href=`upi://pay?pa=${UPI}&pn=Khadija&am=${total}&cu=INR`;}
-function order(){let msg=`*ORDER*\n${cart[0].name} Rs ${cart[0].price}\nShip Rs ${ship}\nTotal Rs ${cart[0].price+ship}\nUTR ${document.getElementById('utr').value}`; window.open(`https://wa.me/917406277926?text=${encodeURIComponent(msg)}`);}
+const PRODUCTS=[
+{id:'c250',name:'Chicken Pickle 250g',price:350,weight:500,img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400'},
+{id:'c500',name:'Chicken Pickle 500g',price:700,weight:900,img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400'},
+{id:'c1000',name:'Chicken Pickle 1kg Best',price:1400,weight:1700,img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400'},
+{id:'m250',name:'Mutton Pickle 250g',price:700,weight:600,img:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400'},
+{id:'m500',name:'Mutton Pickle 500g',price:1400,weight:1000,img:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400'},
+{id:'m1000',name:'Mutton Pickle 1kg',price:2400,weight:1800,img:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400'}
+];
+let cart=[]; const UPI='9652277926-7@ybl';
+
+function getShip(pin,totalW){
+if(!pin||pin.length!=6||totalW==0) return 0;
+let isNellore=['524121','524126','524101','524001'].includes(pin);
+if(isNellore){
+if(totalW<=1000) return 135;
+if(totalW<=2000) return 214;
+// For 10 x 250g = 5000g -> 214 + 3kg extra * 90 = 484
+let extraKg=Math.ceil((totalW-2000)/1000);
+return 214 + extraKg*90;
+} else {
+let slabs=Math.ceil(totalW/1000);
+if(slabs<=1) return Math.round(106*1.18+10);
+if(slabs==2) return Math.round(177*1.18+10);
+return Math.round((177 + (slabs-2)*70)*1.18+10);
+}
+}
+
+function renderGrid(){
+let h='';
+PRODUCTS.forEach(p=>{
+h+=`<div class="border p-2 bg-white">
+<img src="${p.img}" class="w-full h-[130px] object-cover">
+<p class="text-[12px] font-bold mt-1">${p.name}</p>
+<p class="text-[11px]">₹${p.price} | Gross ${p.weight}g</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="text-[11px]">Qty:</span>
+<button onclick="chgInput('${p.id}',-1)" class="bg-gray-200 px-2 py-0.5">-</button>
+<input id="qty-${p.id}" type="number" value="1" min="1" max="20" class="border w-[40px] text-center text-[12px] p-0.5">
+<button onclick="chgInput('${p.id}',1)" class="bg-gray-200 px-2 py-0.5">+</button>
+</div>
+<div class="flex gap-1 mt-1">
+<input id="pin-${p.id}" class="border text-[10px] p-1 w-[70px]" placeholder="524121" value="524121">
+<button onclick="checkPin('${p.id}')" class="text-[#2874f0] text-[10px] font-bold">Check</button>
+</div>
+<p id="ship-${p.id}" class="text-[10px] text-green-600 h-[14px]"></p>
+<p id="total-${p.id}" class="text-[11px] font-bold">Total: ₹${p.price}</p>
+<button onclick="addToCart('${p.id}')" class="w-full bg-[#ff9f00] text-white py-1.5 rounded mt-1 text-[11px] font-bold">ADD ${document.getElementById(`qty-${p.id}`)?document.getElementById(`qty-${p.id}`).value:1} TO CART</button>
+</div>`;
+});
+document.getElementById('grid').innerHTML=h;
+PRODUCTS.forEach(p=>{document.getElementById(`qty-${p.id}`).addEventListener('input',()=>updateRow(p.id))});
+}
+
+function chgInput(id,d){let el=document.getElementById(`qty-${id}`); let v=parseInt(el.value)||1; v+=d; if(v<1)v=1; if(v>20)v=20; el.value=v; updateRow(id);}
+
+function updateRow(id){
+let qty=parseInt(document.getElementById(`qty-${id}`).value)||1;
+let p=PRODUCTS.find(x=>x.id===id);
+let pin=document.getElementById(`pin-${id}`).value||'524121';
+let totalW=qty*p.weight;
+let s=getShip(pin,totalW);
+document.getElementById(`total-${id}`).innerText=`${qty} x ₹${p.price} = ₹${qty*p.price} | ${totalW}g | Ship ₹${s}`;
+document.getElementById(`ship-${id}`).innerText=s?`Ship to ${pin}: ₹${s} for ${totalW}g`:'';
+}
+
+function checkPin(id){
+let pin=document.getElementById(`pin-${id}`).value;
+document.getElementById('finalPin').value=pin;
+updateRow(id);
+}
+
+function addToCart(id){
+let qty=parseInt(document.getElementById(`qty-${id}`).value)||1;
+let pin=document.getElementById(`pin-${id}`).value||'524121';
+document.getElementById('finalPin').value=pin;
+let exist=cart.find(x=>x.id===id);
+if(exist){exist.qty+=qty;} else {let p=PRODUCTS.find(x=>x.id===id); cart.push({...p,qty});}
+updateCartUI();
+openCart();
+}
+
+function updateCartUI(){
+document.getElementById('cartC').innerText=cart.reduce((a,b)=>a+b.qty,0);
+document.getElementById('cartCount').innerText=cart.reduce((a,b)=>a+b.qty,0);
+let totalW=cart.reduce((a,b)=>a+b.weight*b.qty,0);
+document.getElementById('totalW').innerText=totalW+'g';
+document.getElementById('weightLabel').innerText=totalW+'g';
+let html='';
+cart.forEach((it,i)=>{
+html+=`<div class="bg-white p-2 text-[12px]"><b>${it.name}</b><br>${it.qty} x ${it.weight}g = ${it.qty*it.weight}g | ₹${it.price} x ${it.qty} = ₹${it.price*it.qty}<br><button onclick="changeQty(${i},-1)" class="bg-gray-200 px-2 mr-1">-</button><button onclick="changeQty(${i},1)" class="bg-gray-200 px-2 mr-1">+</button><button onclick="changeQty(${i},-it.qty)" class="text-red-500">Remove</button></div>`;
+});
+document.getElementById('cartList').innerHTML=html||'Empty';
+calc();
+}
+
+function changeQty(i,d){cart[i].qty+=d; if(cart[i].qty<=0) cart.splice(i,1); updateCartUI();}
+
+function openCart(){document.getElementById('cart').style.transform='translateX(0)';}
+function closeCart(){document.getElementById('cart').style.transform='translateX(100%)';}
+
+function calc(){
+let pin=document.getElementById('finalPin').value||'524121';
+document.getElementById('pinLabel').innerText=pin;
+let w=cart.reduce((a,b)=>a+b.weight*b.qty,0);
+let ship=getShip(pin,w);
+let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);
+document.getElementById('sub').innerText=`Rs ${sub}`;
+document.getElementById('ship').innerText=`Rs ${ship}`;
+document.getElementById('grand').innerText=`Rs ${sub+ship}`;
+let link=`upi://pay?pa=${UPI}&pn=Khadija&am=${sub+ship}&cu=INR&tn=${pin}-${w}g`;
+document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(link)}`;
+if(sub>0) document.getElementById('qr').classList.remove('hidden');
+}
+
+function payUPI(){let w=cart.reduce((a,b)=>a+b.weight*b.qty,0); let sub=cart.reduce((a,b)=>a+b.price*b.qty,0); let pin=document.getElementById('finalPin').value; let s=getShip(pin,w); window.location.href=`upi://pay?pa=${UPI}&pn=Khadija&am=${sub+s}&cu=INR&tn=${pin}`;}
+
+function order(){let w=cart.reduce((a,b)=>a+b.weight*b.qty,0); let sub=cart.reduce((a,b)=>a+b.price*b.qty,0); let pin=document.getElementById('finalPin').value; let s=getShip(pin,w); let items=cart.map(c=>`${c.name} Qty:${c.qty} Weight:${c.qty*c.weight}g Price:${c.qty*c.price}`).join('\n'); let msg=`*ORDER*\n${items}\nTotal Weight:${w}g\nPincode:${pin}\nShipping:Rs ${s}\nTotal Paid:Rs ${sub+s}\nUTR:${document.getElementById('utr').value}\nName:${document.getElementById('name').value}`; window.open(`https://wa.me/917406277926?text=${encodeURIComponent(msg)}`,'_blank');}
+
+renderGrid();
+PRODUCTS.forEach(p=>updateRow(p.id));
 </script>
 </body>
 </html>
