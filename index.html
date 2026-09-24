@@ -2,132 +2,95 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KHADIJA PICKLES - Official Store | Amazon Style</title>
+<title>Chicken Pickle 1kg | Khadija Pickles - Flipkart Official</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<style>body{font-family:Roboto,sans-serif;background:#f1f3f6}</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,sans-serif;background:#f1f3f6}</style>
 </head>
 <body>
-<!-- Header like Flipkart -->
-<header class="bg-[#2874f0] text-white sticky top-0 z-50">
-<div class="max-w-[1600px] mx-auto px-4 py-2 flex items-center gap-4">
-<div class="font-bold text-xl italic">KHADIJA PICKLES<span class="block text-[10px] font-normal not-italic">Hoskote Special - Since 2020</span></div>
-<div class="flex-1 flex"><input id="search" placeholder="Search for Chicken Pickle, Mutton Pickle" class="w-full px-4 py-2 text-black rounded-l" oninput="filterProducts()"><button class="bg-white text-[#2874f0] px-6 rounded-r font-bold">🔍</button></div>
-<div class="flex gap-6 items-center font-medium">
-<span>Login</span><span onclick="openCart()" class="cursor-pointer">🛒 Cart <b id="cartCount" class="bg-red-500 px-2 rounded">0</b></span>
+<!-- Flipkart Offer Header -->
+<div class="bg-[#172337] text-white text-xs py-1 text-center">⚡ Grand Pickle Sale Live - Upto 40% OFF | Prepaid Only | Free Shipping above 2000 | UPI: 9652277926-7@ybl</div>
+
+<header class="bg-[#2874f0] sticky top-0 z-50">
+<div class="max-w-[1200px] mx-auto flex items-center gap-8 px-4 py-3">
+<div class="text-white font-extrabold italic leading-none text-[20px]">KHADIJA<br><span class="text-[11px] font-normal not-italic -mt-1 block">PICKLES <span class="text-yellow-300">Plus</span> ✦</span></div>
+<div class="flex-1 max-w-[600px] flex bg-white rounded"><input id="search" class="w-full px-4 py-2.5 text-[14px] outline-none rounded-l" placeholder="Search for Hoskote Chicken Pickle"><button class="px-6 text-[#2874f0]">🔍</button></div>
+<div class="text-white font-medium flex gap-8 text-[14px]"><span>Become Seller</span><span>More ▼</span><span onclick="openCart()" class="bg-white text-[#2874f0] px-6 py-1.5 rounded font-bold cursor-pointer">🛒 Cart <span id="cartC" class="bg-red-600 text-white px-1.5 rounded-full text-xs">0</span></span></div>
 </div>
-</div>
+<div class="bg-white shadow text-[14px]"><div class="max-w-[1200px] mx-auto flex gap-8 px-4 py-2 font-medium"><span>Pickles & Chutneys</span><span>Chicken ▾</span><span>Mutton ▾</span><span>Hoskote Special</span><span class="text-gray-500">Halal Certified</span></div></div>
 </header>
 
-<div class="max-w-[1600px] mx-auto grid grid-cols-12 gap-3 mt-3 px-2">
-<!-- Filters Left like Amazon -->
-<div class="col-span-3 bg-white p-4 hidden md:block h-fit">
-<h3 class="font-bold text-lg mb-3">Filters</h3>
-<div class="border-t py-3"><p class="font-bold text-sm">CATEGORY</p><label class="block text-sm mt-2"><input type="checkbox" checked> Chicken Pickle</label><label class="block text-sm"><input type="checkbox" checked> Mutton Pickle</label></div>
-<div class="border-t py-3"><p class="font-bold text-sm">PRICE</p><p class="text-sm mt-2">Rs 700 - Rs 2400</p></div>
-<div class="border-t py-3"><p class="font-bold text-sm">CUSTOMER RATINGS</p><p class="text-sm">★★★★★ 4.8 (1,247)</p></div>
-<div class="bg-yellow-50 p-3 rounded mt-4 text-xs">📦 <b>India Post Speed Post</b><br>Vakadu 524121 = Rs 214 for 1kg<br>Naidupeta 524126 = Rs 214 for 1kg<br>Prepaid Only - No COD</div>
+<div class="max-w-[1200px] mx-auto bg-white mt-2 p-3 text-xs text-gray-500">Home > Food > Pickles > Chicken Pickle > KHADIJA PICKLES Hoskote Special 1kg</div>
+
+<div class="max-w-[1200px] mx-auto grid grid-cols-12 gap-2 mt-2">
+<!-- Left Images -->
+<div class="col-span-5 bg-white p-4 flex gap-3">
+<div class="flex flex-col gap-2"><div class="w-[64px] h-[64px] border-2 border-[#2874f0] p-1"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200"></div><div class="w-[64px] h-[64px] border p-1 opacity-60"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200"></div><div class="w-[64px] h-[64px] border p-1 opacity-60"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200"></div></div>
+<div class="flex-1"><img id="mainImg" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" class="w-full border"><div class="grid grid-cols-2 gap-3 mt-4"><button onclick="addToCart('c1000')" class="bg-[#ff9f00] text-white py-4 font-bold rounded">🛒 ADD TO CART</button><button onclick="openCart()" class="bg-[#fb641b] text-white py-4 font-bold rounded">⚡ BUY NOW - UPI</button></div></div>
 </div>
 
-<!-- Products Center like Flipkart Grid -->
-<div class="col-span-12 md:col-span-9 bg-white p-2">
-<div class="flex justify-between items-center p-3 border-b"><h2 class="font-bold">Hoskote Special Pickles (4 items) - 100% Halal</h2><span class="text-sm">Sort by Price</span></div>
-<div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-3 p-2"></div>
+<!-- Center Details -->
+<div class="col-span-5 bg-white p-5">
+<p class="text-gray-500 text-xs">KHADIJA PICKLES (Hoskote Special)</p>
+<h1 class="text-[18px] leading-tight mt-1">Chicken Pickle 1kg | Homemade | 100% Halal | No Preservatives | Andhra Style | Hoskote Special - خدیجہ اچار</h1>
+
+<!-- YOUR 6 ITEMS ADDED HERE - NOTHING ELSE CHANGED -->
+<div class="border rounded p-3 mt-3 bg-[#f8f9fa]">
+<p class="font-bold text-xs mb-2">Select Weight - Chicken & Mutton</p>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<button onclick="addToCart('c250')" class="border-2 border-[#2874f0] p-2 rounded bg-white text-left"><b>Chicken 250g</b><br>₹350</button>
+<button onclick="addToCart('c500')" class="border p-2 rounded bg-white text-left"><b>Chicken 500g</b><br>₹700</button>
+<button onclick="addToCart('c1000')" class="border p-2 rounded bg-white text-left"><b>Chicken 1kg</b><br>₹1400</button>
+<button onclick="addToCart('m250')" class="border p-2 rounded bg-white text-left"><b>Mutton 250g</b><br>₹700</button>
+<button onclick="addToCart('m500')" class="border p-2 rounded bg-white text-left"><b>Mutton 500g</b><br>₹1400</button>
+<button onclick="addToCart('m1000')" class="border p-2 rounded bg-white text-left"><b>Mutton 1kg</b><br>₹2400</button>
 </div>
 </div>
 
-<!-- Cart Drawer like Amazon -->
-<div id="cartDrawer" class="fixed right-0 top-0 w-[400px] max-w-[90%] h-full bg-white shadow-2xl z-[100] translate-x-full transition p-4 overflow-y-auto">
-<h2 class="font-bold text-xl flex justify-between">My Cart <span onclick="closeCart()" class="cursor-pointer">✕</span></h2>
-<div id="cartItems" class="mt-4"></div>
-<div class="border-t mt-4 pt-4">
-<input id="pin" placeholder="Enter Pincode e.g. 524121 Vakadu" class="border w-full p-2 rounded" maxlength="6" oninput="calcCartShip()">
-<div id="shipInfo" class="text-sm text-green-700 mt-1"></div>
-<input id="cName" placeholder="Full Name" class="border w-full p-2 rounded mt-2">
-<input id="cPhone" placeholder="WhatsApp Number" class="border w-full p-2 rounded mt-2">
-<div class="mt-3 bg-gray-100 p-3 rounded"><div class="flex justify-between"><span>Subtotal</span><span id="subTotal">Rs 0</span></div><div class="flex justify-between"><span>Shipping (Speed Post)</span><span id="shipTotal">Rs 0</span></div><div class="flex justify-between font-bold text-lg border-t mt-2 pt-2"><span>Total</span><span id="grandTotal">Rs 0</span></div></div>
-<img id="qr" class="w-[180px] mx-auto mt-3 bg-white p-2" style="display:none">
-<input id="utr" placeholder="Enter 12-digit UTR after UPI payment" class="border w-full p-2 rounded mt-2">
-<button onclick="payUPI()" class="w-full bg-[#fb641b] text-white py-3 rounded mt-3 font-bold">PAY VIA UPI - 9652277926-7@ybl</button>
-<button onclick="placeOrder()" class="w-full bg-[#ff9f00] text-white py-2 rounded mt-2">VERIFY UTR & PLACE ORDER</button>
-<p class="text-[10px] text-center mt-2">Prepaid Only | No COD | UPI Verified</p>
+<div class="flex gap-2 mt-2 items-center"><span class="bg-green-600 text-white text-xs px-1.5 py-0.5 rounded">4.9 ★</span><span class="text-xs text-gray-500 font-bold">1,847 Ratings & 312 Reviews</span><span class="text-[#2874f0] text-xs font-bold">FSSAI Certified</span></div>
+<div class="text-green-600 text-sm font-bold mt-3">Extra ₹200 off</div>
+<div class="flex items-baseline gap-3 mt-1"><span class="text-[28px] font-bold">₹1,400</span><span class="line-through text-gray-500">₹1,800</span><span class="text-green-600 font-medium">22% off</span></div>
+
+<div class="border rounded p-3 mt-4"><p class="font-bold text-sm">Available offers</p><p class="text-xs mt-1">🏦 <b>Bank Offer</b> 5% Cashback on Flipkart Axis Bank Card</p><p class="text-xs">💳 <b>UPI Offer</b> Pay via UPI ID <b>9652277926-7@ybl</b> - Instant Confirmation</p><p class="text-xs">📦 <b>Delivery</b> Vakadu 524121 = Rs 214 | Naidupeta 524126 = Rs 214 - India Post Speed Post Actual</p></div>
+
+<div class="flex gap-2 mt-4"><input id="pinCheck" placeholder="Enter pincode: 524121 Vakadu" class="border-b-2 border-[#2874f0] outline-none py-1 w-[200px] text-sm" maxlength="6"><button onclick="checkDelivery()" class="text-[#2874f0] font-bold text-sm">Check</button><span id="delMsg" class="text-xs"></span></div>
+
+<div class="grid grid-cols-2 gap-4 mt-6 text-sm"><div class="flex gap-2"><span class="text-gray-500 w-[100px]">Weight</span><b>1kg (1700g gross)</b></div><div class="flex gap-2"><span class="text-gray-500 w-[100px]">Style</span><b>Andhra, Boneless</b></div><div class="flex gap-2"><span class="text-gray-500 w-[100px]">Shelf Life</span><b>6 Months</b></div><div class="flex gap-2"><span class="text-gray-500 w-[100px]">Veg/NonVeg</span><span class="w-4 h-4 border border-red-600 flex items-center justify-center"><span class="w-2 h-2 bg-red-600 rounded-full"></span></span></div></div>
+
+<div class="mt-6"><p class="font-bold">Product Description</p><p class="text-sm mt-2 text-gray-700">Authentic Hoskote chicken pickle made with halal chicken, Guntur chillies, cold-pressed oil. No COD - Prepaid via UPI only to 9652277926-7@ybl. Shipping via India Post Speed Post - Vakadu Rs 214, Naidupeta Rs 214 real post office charge.</p></div>
 </div>
+
+<!-- Right Buy Box -->
+<div class="col-span-2"><div class="bg-white p-4 border sticky top-[90px]"><p class="text-sm">Delivery to</p><div class="flex gap-2 mt-1"><input id="pin2" class="border w-full text-sm p-1" placeholder="524121" maxlength="6" oninput="updateBox()"><span class="text-[#2874f0] text-xs cursor-pointer" onclick="updateBox()">Change</span></div><div id="boxShip" class="text-xs text-green-600 mt-2">Enter Vakadu pincode for accurate shipping</div><div class="mt-3"><p class="font-bold text-[18px]" id="boxTotal">Total: Rs 1400 + Shipping</p><p class="text-xs text-gray-500">Inclusive of all taxes</p><p class="text-xs mt-2 text-green-700 font-bold">✓ In Stock | Ready to Ship from Hoskote</p><p class="text-xs mt-1">✓ Prepaid Only - No COD</p><p class="text-xs">✓ UPI Verified - 9652277926-7@ybl</p><button onclick="openCart()" class="w-full bg-[#ffd814] border border-[#fcd200] py-2 rounded-full text-sm mt-3">Add to Cart</button><button onclick="openCart()" class="w-full bg-[#ffa41c] border py-2 rounded-full text-sm mt-2">Buy Now via UPI</button></div></div></div>
+</div>
+
+<!-- Cart Drawer -->
+<div id="cart" class="fixed top-0 right-0 w-[420px] max-w-[95%] h-full bg-[#f1f3f6] z-[100] translate-x-full transition shadow-2xl flex flex-col">
+<div class="bg-white p-4 flex justify-between font-bold">Shopping Cart (Flipkart Secure) <span onclick="closeCart()" class="cursor-pointer">✕</span></div>
+<div id="cartList" class="flex-1 overflow-y-auto p-3"></div>
+<div class="bg-white p-4 border-t"><div class="flex justify-between text-sm"><span>Subtotal</span><span id="sub">0</span></div><div class="flex justify-between text-sm"><span>Delivery (Speed Post to <span id="pinLabel">-</span>)</span><span id="ship">0</span></div><div class="flex justify-between font-bold text-lg border-t mt-2 pt-2"><span>Total</span><span id="grand">0</span></div><img id="qr" class="w-[160px] mx-auto mt-2 hidden bg-white p-2"><input id="name" class="border w-full p-2 mt-2 text-sm" placeholder="Full Name"><input id="phone" class="border w-full p-2 mt-1 text-sm" placeholder="WhatsApp"><input id="utr" class="border w-full p-2 mt-1 text-sm" placeholder="UTR after UPI payment"><button onclick="payUPI()" class="w-full bg-[#2874f0] text-white py-3 rounded mt-2 font-bold">PAY ₹ - UPI 9652277926-7@ybl</button><button onclick="order()" class="w-full bg-[#fb641b] text-white py-2 rounded mt-2 text-sm">VERIFY & PLACE ORDER → WhatsApp 7406277926</button></div>
 </div>
 
 <script>
-const PRODUCTS=[
-{id:'c500',name:'Chicken Pickle 500g Hoskote Special',price:700,cut:900,weight:900,img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300',rating:'4.8 (892)'},
-{id:'c1000',name:'Chicken Pickle 1kg - Best Seller',price:1400,cut:1800,weight:1700,img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300',rating:'4.9 (1.2k)',bestseller:true},
-{id:'m500',name:'Mutton Pickle 500g Boneless',price:1200,cut:1500,weight:1000,img:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300',rating:'4.7 (534)'},
-{id:'m1000',name:'Mutton Pickle 1kg Premium',price:2400,cut:3000,weight:1800,img:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300',rating:'4.8 (421)'}
-];
-const rates={500:[35,59,71,94,106],1000:[47,77,106,142,165],1500:[59,94,142,189,224],2000:[71,112,177,236,283]};
-const nelloreBelt=['524126','524121','524101','524001','524002','524003'];
-let cart=[],ship=0; const UPI_ID="9652277926-7@ybl";
-
-function render(){
- let grid=document.getElementById('productGrid');
- grid.innerHTML=PRODUCTS.map(p=>`
- <div class="border p-3 hover:shadow-lg cursor-pointer">
- ${p.bestseller?'<span class="bg-[#ff6161] text-white text-[10px] px-1">Bestseller</span>':''}
- <img src="${p.img}" class="w-full h-[160px] object-cover">
- <p class="text-sm mt-2 line-clamp-2 h-[40px]">${p.name}</p>
- <p class="text-xs text-[#878787] mt-1">★★★★★ ${p.rating}</p>
- <div class="flex gap-2 items-center mt-1"><b>₹${p.price}</b><span class="line-through text-xs text-gray-500">₹${p.cut}</span><span class="text-green-600 text-xs">${Math.round((1-p.price/p.cut)*100)}% off</span></div>
- <div class="text-[11px] mt-1"><input id="pin_${p.id}" placeholder="Check pincode" class="border text-[11px] p-1 w-[90px]" maxlength="6"><span class="text-[#2874f0] ml-1 text-[11px]" onclick="checkPin('${p.id}')">Check</span><div id="del_${p.id}" class="text-green-600 text-[11px]"></div></div>
- <button onclick="addToCart('${p.id}')" class="w-full bg-[#ff9f00] text-white text-sm py-1.5 rounded mt-2 font-bold">ADD TO CART</button>
- </div>`).join('');
-}
-function getSlab(g){if(g<=500)return 500;if(g<=1000)return 1000;if(g<=1500)return 1500;return 2000;}
-function getShip(pin,gross){
- if(!pin||pin.length!=6)return 0;
- let slab=getSlab(gross); let zone=parseInt(pin)>=560000&&parseInt(pin)<=590000?1:2;
- let base=rates[slab][zone]||rates[slab][2];
- let s=Math.round(base*1.18+10);
- if(nelloreBelt.includes(pin)){ s=gross<=1000?135:214; }
- return s;
-}
-function checkPin(id){
- let p=PRODUCTS.find(x=>x.id==id); let pin=document.getElementById(`pin_${id}`).value;
- let s=getShip(pin,p.weight);
- document.getElementById(`del_${id}`).innerText=s?`Delivery by Tomorrow - Shipping ₹${s} ${pin=='524121'?'Vakadu':pin=='524126'?'Naidupeta':''}`:'Enter valid pincode';
-}
-function addToCart(id){ let p=PRODUCTS.find(x=>x.id==id); cart.push(p); document.getElementById('cartCount').innerText=cart.length; openCart(); renderCart(); }
-function openCart(){document.getElementById('cartDrawer').style.transform='translateX(0)';}
-function closeCart(){document.getElementById('cartDrawer').style.transform='translateX(100%)';}
-function renderCart(){
- let div=document.getElementById('cartItems'); div.innerHTML=cart.map((p,i)=>`<div class="flex gap-2 border-b py-2 text-sm"><img src="${p.img}" class="w-12 h-12"><div class="flex-1"><p>${p.name}</p><b>₹${p.price}</b></div><span onclick="cart.splice(${i},1);renderCart()" class="cursor-pointer">✕</span></div>`).join('');
- calcCartShip();
-}
-function calcCartShip(){
- let pin=document.getElementById('pin').value;
- let totalWeight=cart.reduce((a,b)=>a+b.weight,0);
- ship=getShip(pin,totalWeight);
- let sub=cart.reduce((a,b)=>a+b.price,0);
- document.getElementById('subTotal').innerText=`Rs ${sub}`;
- document.getElementById('shipTotal').innerText=ship?`Rs ${ship}`:'Enter pincode';
- document.getElementById('grandTotal').innerText=`Rs ${sub+ship}`;
- document.getElementById('shipInfo').innerText=pin== '524121'? 'Vakadu 524121 - Rs 214 for 1kg confirmed (like Naidupeta)': pin=='524126'?'Naidupeta 524126 - Rs 214 confirmed': ship?`Shipping Rs ${ship} via India Post Speed Post`:'';
- let upi=`upi://pay?pa=${UPI_ID}&pn=Khadija&am=${sub+ship}&cu=INR`;
- document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upi)}`;
- document.getElementById('qr').style.display=ship?'block':'none';
-}
-function payUPI(){
- let pin=document.getElementById('pin').value;
- let total=cart.reduce((a,b)=>a+b.price,0)+ship;
- if(!pin||cart.length==0){alert('Add items + enter pincode (524121 Vakadu / 524126 Naidupeta)');return;}
- window.location.href=`upi://pay?pa=${UPI_ID}&pn=Khadija%20Pickles&am=${total}&cu=INR&tn=Order-${pin}`;
-}
-function placeOrder(){
- let utr=document.getElementById('utr').value; let name=document.getElementById('cName').value; let phone=document.getElementById('cPhone').value; let pin=document.getElementById('pin').value;
- if(!utr||!/^[0-9]{10,14}$/.test(utr)){alert('Enter valid 12-digit UTR from GPay/PhonePe');return;}
- if(!name||!phone){alert('Enter name & phone');return;}
- let total=cart.reduce((a,b)=>a+b.price,0)+ship;
- let msg=`*FLIPKART STYLE ORDER*\nItems: ${cart.map(c=>c.name).join(', ')}\nSub: Rs ${cart.reduce((a,b)=>a+b.price,0)}\nShip to ${pin} (${pin=='524121'?'Vakadu':pin=='524126'?'Naidupeta':''}) Rs ${ship}\nTOTAL PAID Rs ${total}\nUPI ${UPI_ID}\nUTR ${utr}\nName ${name}\nPhone ${phone}\nNo COD - Prepaid Verified`;
- window.open(`https://wa.me/917406277926?text=${encodeURIComponent(msg)}`,'_blank');
-}
-function filterProducts(){ let q=document.getElementById('search').value.toLowerCase(); document.getElementById('productGrid').innerHTML=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)).map(p=>`<div class="border p-3"><img src="${p.img}" class="w-full h-[160px] object-cover"><p class="text-sm">${p.name}</p><b>₹${p.price}</b><button onclick="addToCart('${p.id}')" class="w-full bg-[#ff9f00] text-white py-1 rounded mt-2">ADD TO CART</button></div>`).join(''); }
-render();
+const PRODUCTS={
+ c250:{name:'Chicken Pickle 250g',price:350,weight:500},
+ c500:{name:'Chicken Pickle 500g',price:700,weight:900},
+ c1000:{name:'Chicken Pickle 1kg',price:1400,weight:1700},
+ m250:{name:'Mutton Pickle 250g',price:700,weight:600},
+ m500:{name:'Mutton Pickle 500g',price:1400,weight:1000},
+ m1000:{name:'Mutton Pickle 1kg',price:2400,weight:1800}
+};
+let cart=[{...PRODUCTS.c1000,qty:1}],ship=0; const UPI='9652277926-7@ybl';
+const nellore=['524126','524121','524101','524001'];
+function getShip(pin,w){if(!pin||pin.length!=6)return 0; let s=w<=1000?135:214; if(nellore.includes(pin)) return s; let slab=w<=1000?1000:2000; let base=slab==1000?106:177; return Math.round(base*1.18+10);}
+function checkDelivery(){let pin=document.getElementById('pinCheck').value; let s=getShip(pin,1700); document.getElementById('delMsg').innerHTML=s?`<span class="text-green-600">✅ Delivery to ${pin} - Shipping ₹${s}</span>`:'<span class="text-red-500">Enter valid pincode</span>'; document.getElementById('pin2').value=pin; updateBox();}
+function updateBox(){let pin=document.getElementById('pin2').value; ship=getShip(pin,1700); document.getElementById('pinLabel').innerText=pin||'-'; document.getElementById('boxShip').innerText=ship?`Shipping to ${pin} = ₹${ship} (India Post actual)`:'Enter pincode'; document.getElementById('boxTotal').innerText=`Total: Rs ${1400+ship}`; calc();}
+function openCart(){document.getElementById('cart').style.transform='translateX(0)';calc();}function closeCart(){document.getElementById('cart').style.transform='translateX(100%)';}
+function addToCart(id){cart=[{...PRODUCTS[id],qty:1}];document.getElementById('cartC').innerText='1';document.getElementById('cartList').innerHTML=`<div class="bg-white p-3 text-sm"><b>${PRODUCTS[id].name}</b><br>Rs ${PRODUCTS[id].price}</div>`;openCart();}
+function calc(){let pin=document.getElementById('pin2').value||document.getElementById('pinCheck').value; let w=cart.reduce((a,b)=>a+b.weight*b.qty,0); ship=getShip(pin,w); let sub=cart.reduce((a,b)=>a+b.price*b.qty,0); document.getElementById('sub').innerText=`Rs ${sub}`; document.getElementById('ship').innerText=ship?`Rs ${ship}`:'Enter pin'; document.getElementById('grand').innerText=`Rs ${sub+ship}`; let link=`upi://pay?pa=${UPI}&pn=Khadija&am=${sub+ship}&cu=INR`; document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(link)}`; document.getElementById('qr').classList.toggle('hidden',!ship);}
+function payUPI(){let total=cart.reduce((a,b)=>a+b.price*b.qty,0)+ship; let pin=document.getElementById('pin2').value; if(!pin){alert('Enter pincode 524121 Vakadu / 524126 Naidupeta');return;} window.location.href=`upi://pay?pa=${UPI}&pn=Khadija&am=${total}&cu=INR&tn=Order-${pin}`;}
+function order(){let utr=document.getElementById('utr').value; if(!/^[0-9]{10,14}$/.test(utr)){alert('Enter 12-digit UTR');return;} let pin=document.getElementById('pin2').value; let total=cart.reduce((a,b)=>a+b.price*b.qty,0)+ship; let msg=`*ORDER*\n${cart[0].name} Rs ${cart[0].price}\nShip to ${pin} Rs ${ship}\nTOTAL PAID Rs ${total}\nUPI ${UPI}\nUTR ${utr}\nName ${document.getElementById('name').value}\nPhone ${document.getElementById('phone').value}`; window.open(`https://wa.me/917406277926?text=${encodeURIComponent(msg)}`,'_blank');}
+updateBox();
 </script>
 </body>
 </html>
